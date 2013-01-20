@@ -5,10 +5,11 @@ using System.Text;
 
 namespace PSMP_Kursovik
 {
+    /// <summary>
+    /// Класс реализующий поезд.
+    /// </summary>
     class Train
     {
-        //public event MyDel MyEvent; 
-
         private Point StartCoordinate, FinishCoordinate ;
         public Point NextCoordinate { get; private set; }
         public PointG beginPointG, endPointG, nowPointG, inPointG;
@@ -18,13 +19,11 @@ namespace PSMP_Kursovik
         private int m1;
         private double lamda;
         private double lenght;
-        public Train(Point StartXY, Point FinishXY)
-        {
-            StartCoordinate = new Point(StartXY.X,StartXY.Y);
-            FinishCoordinate = new Point(FinishXY.X,FinishXY.Y);
-            NextCoordinate = new Point(StartXY.X, StartXY.Y);
-        }
-
+        /// <summary>
+        /// Задаем начальную и конечную станции для движения поезда.
+        /// </summary>
+        /// <param name="begin"></param>
+        /// <param name="end"></param>
         public Train(PointG begin, PointG end)
         {
             beginPointG = nowPointG = begin;
@@ -34,7 +33,10 @@ namespace PSMP_Kursovik
             NextCoordinate = new Point(begin.X, begin.Y);
 
         }
-
+        /// <summary>
+        /// Задает № поезда.
+        /// </summary>
+        /// <param name="name"></param>
         public void SetTrainName(string name)
         {
             TrainName = name;
@@ -59,7 +61,10 @@ namespace PSMP_Kursovik
             FinishCoordinate.Y = path[path.Count - 2].Y;
         }
 
-
+        /// <summary>
+        /// Получение следующей координаты при движении по всему пути поезда.
+        /// </summary>
+        /// <returns></returns>
         public Point GetNextCoordinate()
         {
             if ( Math.Sqrt(Math.Pow(FinishCoordinate.X - NextCoordinate.X,2) +  Math.Pow(FinishCoordinate.Y - NextCoordinate.Y,2)) < 30)
@@ -118,6 +123,10 @@ namespace PSMP_Kursovik
                 return null;
             }                
         }
+        /// <summary>
+        /// Получение следующей координаты при движении между станциями.
+        /// </summary>
+        /// <returns></returns>
         private int GetNextCoordinateForLine()
         {
             double temp = Math.Sqrt(Math.Pow(FinishCoordinate.X - NextCoordinate.X, 2) +
@@ -171,6 +180,9 @@ namespace PSMP_Kursovik
                 return 0;
             }                
         }
+        /// <summary>
+        /// Движение по всему пути(без обработки диспетчира).
+        /// </summary>
         public void Go()
         {
             m1 = 10;
@@ -187,6 +199,9 @@ namespace PSMP_Kursovik
                 
             }
         }
+        /// <summary>
+        /// Движение от станции к станции(обрабатывается диспетчиром).
+        /// </summary>
         public void GoToLine()
         {
             m1 = 10;

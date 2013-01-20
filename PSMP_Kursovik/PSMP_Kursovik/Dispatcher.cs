@@ -1,36 +1,35 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace PSMP_Kursovik
 {
+    /// <summary>
+    /// Класс реализующий диспетчира.
+    /// </summary>
     class Dispatcher
     {
-        public event MyDel stopThear;
-        private List<Thread> _threads;
+        public event MyDel stopThear;// Вызывается после окончания работы диспетчера.
         private readonly List<Train> _trains;
-        private List<Rebro> _rebros;
-        public Queue oQueue, QueueTr;
-        public List<string> Inroad;
-        public Dispatcher()
+        public Queue oQueue, QueueTr;//Очередь обработки поездов.
+        public List<string> Inroad;//Поезда которые находятся в дороге.
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="trains"></param>
+        public Dispatcher(List<Train> trains )
         {
-            
-        }
-        public Dispatcher(List<Thread> threads,List<Train> trains,List<Rebro> rebros )
-        {
-            _threads = threads;
             _trains = trains;
-            _rebros = rebros;
             oQueue = new Queue();
             QueueTr = Queue.Synchronized(oQueue); 
             Inroad = new List<string>();
         }
+        /// <summary>
+        /// Возвращает объект поезда по номеру поезда.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private Train GetTrain(string name)
         {
             return _trains.FirstOrDefault(t => t.TrainName == name);

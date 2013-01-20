@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-
-using System.ComponentModel;
-using System.Data;
-using System.Windows.Forms;
-using System.Threading;
-using System.Drawing.Imaging;
 
 namespace PSMP_Kursovik
 {
+    /// <summary>
+    /// Класс реализующий обработку графики.
+    /// </summary>
     class GraphicsMy
     {
 
@@ -26,6 +22,9 @@ namespace PSMP_Kursovik
             rebro = Rebro;
             trains = Trains;
         }
+        /// <summary>
+        /// Перерисовка.
+        /// </summary>
         public void RenderingTest()
         {
 
@@ -50,14 +49,12 @@ namespace PSMP_Kursovik
                 g.DrawLine(new Pen(Color.Gray, 1), x + rebro[i].FirstPointG.X, y + rebro[i].FirstPointG.Y,
                                x + rebro[i].SecondPointG.X, y + rebro[i].SecondPointG.Y);
             }
-
-            
             this.mainForm.pictureBox.Image = bmp;
-            //mainForm.pictureBox.Refresh();
-            //mainForm.pictureBox.Update();
-            //mainForm.pictureBox.Image = bmp;
             g.Dispose();
         }
+        /// <summary>
+        /// Перерисовка в потоке.
+        /// </summary>
         public void Refresh()
         {
 

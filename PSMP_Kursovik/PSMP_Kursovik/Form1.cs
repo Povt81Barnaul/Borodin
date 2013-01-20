@@ -9,8 +9,6 @@ using System.Windows.Forms;
 namespace PSMP_Kursovik
 {
     delegate void MyDel();
-
-    delegate void MyDelTr();
     public partial class Form1 : Form
     {
         List<Thread> threads = new List<Thread>();
@@ -31,7 +29,7 @@ namespace PSMP_Kursovik
         /// Генерируем граф
         /// </summary>
         /// <returns></returns>
-        void GenerateGraph()
+        private void GenerateGraph()
         {
             int stationCount = Convert.ToInt32(numericStationCount.Value);
             var rend1 = new Random(System.DateTime.Now.Millisecond);
@@ -127,13 +125,16 @@ namespace PSMP_Kursovik
             rebro = ListRebro.ToArray();
         }
         /// <summary>
-        /// Обработчики собитий.
+        /// Обработчики собитий, вызывается после завершения работы диспетчира.
         /// </summary>
-        void Handler()
+        private void Handler()
         {
             StopThreads();
         } 
-        void StopThreads()
+        /// <summary>
+        /// Завершение всех потоков.
+        /// </summary>
+        private void StopThreads()
         {
             //mainForm.BeginInvoke(new Action(() => mainForm.pictureBox.Image = bmp));
             buttonStart.BeginInvoke(new Action(() => buttonStart.Enabled = true));
@@ -190,7 +191,7 @@ namespace PSMP_Kursovik
                 }
 
             }
-            Dispatcher dis=new Dispatcher(threads,listTrain,rebro.ToList());
+            Dispatcher dis=new Dispatcher(listTrain);
             dis.stopThear += new MyDel(Handler);
             foreach (var t in listTrain)
             {

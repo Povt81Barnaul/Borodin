@@ -223,34 +223,3 @@ namespace PSMP_Kursovik
         }
     }
 }
-
-//class Program
-//{
-//    static void Main(string[] args)
-//    {
-//        PointG[] v = new PointG[6];
-//        v[0] = new PointG(0, false, "F");
-//        v[1] = new PointG(9999, false, "A");
-//        v[2] = new PointG(9999, false, "B");
-//        v[3] = new PointG(9999, false, "C");
-//        v[4] = new PointG(9999, false, "D");
-//        v[5] = new PointG(9999, false, "E");
-//        Rebro[] rebras = new Rebro[10];
-//        rebras[0] = new Rebro(v[0], v[2], 8);
-//        rebras[1] = new Rebro(v[0], v[3], 4);//FC
-//        rebras[2] = new Rebro(v[0], v[1], 9);//FA
-//        rebras[3] = new Rebro(v[2], v[3], 7);//bc
-//        rebras[4] = new Rebro(v[2], v[5], 5);//be
-//        rebras[5] = new Rebro(v[3], v[5], 5);//ce
-//        rebras[6] = new Rebro(v[1], v[5], 6);//ae
-//        rebras[7] = new Rebro(v[1], v[4], 5);//ad
-//        rebras[8] = new Rebro(v[3], v[4], 4);//cd
-//        rebras[9] = new Rebro(v[2], v[4], 7);//bd
-//        DekstraAlgorim da = new DekstraAlgorim(v, rebras);
-//        da.AlgoritmRun(v[0]);
-//        List<string> b = PrintGrath.PrintAllMinPaths(da);
-//        for (int i = 0; i < b.Count; i++)
-//            Console.WriteLine(b[i]);
-//        Console.ReadKey(true);
-//    }
-//}
